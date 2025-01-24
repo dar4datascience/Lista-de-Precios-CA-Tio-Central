@@ -1,0 +1,3 @@
+# Ignore the .devcontainer folder and the Dockerfile
+.devcontainer/
+Dockerfile
