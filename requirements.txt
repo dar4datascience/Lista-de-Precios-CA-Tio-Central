@@ -1,2 +1,0 @@
-img2table
-pillow  # If you need image manipulation

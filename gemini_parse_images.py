@@ -1,4 +1,4 @@
-from parse_images_utils import *
+from scripts.parse_images_utils import *
 
 # Load environment variables
 load_dotenv()
@@ -14,7 +14,7 @@ images = extract_images_from_pdf(pdf_path)
 # Extract and process images separately
 for i, img_bytes in enumerate(images):
     # Save the image as JPG
-    image_path = save_image_as_jpg(img_bytes, i + 1)
+    #image_path = save_image_as_jpg(img_bytes, i + 1)
     
     # Apply OCR to the image
     ocr_text = ocr_image(img_bytes)
