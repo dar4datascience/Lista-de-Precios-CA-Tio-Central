@@ -6,3 +6,4 @@ google-genai
 python-dotenv
 instructor
 pydantic
+duckdb

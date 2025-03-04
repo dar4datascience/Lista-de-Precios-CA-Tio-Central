@@ -17,5 +17,8 @@ COPY requirements.txt /workspaces/requirements.txt
 # Set the working directory
 WORKDIR /workspaces
 
+# INstall dependencies
+RUN pip install -r requirements.txt
+
 # Ensure tesseract is installed correctly
 RUN tesseract --version
