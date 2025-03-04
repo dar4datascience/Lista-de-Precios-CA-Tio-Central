@@ -2,3 +2,7 @@ PyMuPDF
 Pillow
 pytesseract
 google-generativeai
+google-genai
+python-dotenv
+instructor
+pydantic

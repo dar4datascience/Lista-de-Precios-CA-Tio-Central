@@ -12,11 +12,10 @@ RUN apt-get update && apt-get install -y \
   && rm -rf /var/lib/apt/lists/*
 
 # Install pip dependencies
-# COPY requirements.txt /workspace/requirements.txt
-# RUN pip install --no-cache-dir -r /workspace/requirements.txt
+COPY requirements.txt /workspaces/requirements.txt
 
 # Set the working directory
-WORKDIR /workspace
+WORKDIR /workspaces
 
 # Ensure tesseract is installed correctly
 RUN tesseract --version

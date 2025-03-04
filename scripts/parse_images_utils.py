@@ -1,7 +1,7 @@
 import json
 import os
 from pathlib import Path
-from dotenv import load_dotenv
+from tqdm import tqdm
 from pydantic import BaseModel
 from typing import Optional, Literal, List
 import instructor
@@ -12,6 +12,13 @@ from io import BytesIO
 import fitz  # PyMuPDF
 from google.genai import types
 import PIL.Image
+from dotenv import load_dotenv
+from time import sleep
+
+load_dotenv()
+genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+    
+
 
 # Function to apply OCR on an image
 def ocr_image(image_bytes):
@@ -37,7 +44,14 @@ def extract_images_from_pdf(pdf_path):
     
     return images
 
-# Function to process and store with Google Gemini (single call)
+from time import sleep
+import logging
+
+# Set up logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+# Function to process and store with Google Gemini (with exponential backoff retry)
 def process_and_store_with_google_gemini(image_bytes):
     # Prepare the image for Gemini
     image = Image.open(BytesIO(image_bytes))
@@ -80,20 +94,35 @@ def process_and_store_with_google_gemini(image_bytes):
             ]
         ] = None
         products: Optional[List[Product]] = None
-        products: Optional[List[Product]] = None
 
+    # Exponential backoff variables
+    retry_count = 0
+    max_retries = 10
+    retry_seconds = 60  # Start with 30 seconds for backoff
 
-    # Send the image byte data to Gemini API for analysis
-    response = client.messages.create(
-        messages=[
-            {"role": "user", "content": "Extract data from the table in this image and infer the product category from the product records found."},
-            {"role": "user", "content": image}  # Pass byte data as content
-        ],
-        response_model=ProductCategory,
-        max_retries=3
-    )
-    
-    return response
+    while retry_count < max_retries:
+        try:
+            # Send the image byte data to Gemini API for analysis
+            response = client.messages.create(
+                messages=[
+                    {"role": "user", "content": "Extract data from the table in this image and infer the product category from the product records found."},
+                    {"role": "user", "content": image}  # Pass byte data as content
+                ],
+                response_model=ProductCategory,
+                max_retries=2  # max retries for each call within the client
+            )
+            return response  # Return the response if the call is successful
+
+        except Exception as ex:  # Catch any exception related to the API call
+            logger.error(f"Error during Gemini API call: {str(ex)}")
+            retry_count += 1
+            if retry_count < max_retries:
+                logger.info(f"Retrying in {retry_seconds} seconds...")
+                sleep(retry_seconds)  # Wait before retrying
+                retry_seconds *= 2  # Exponential backoff (doubling the wait time)
+            else:
+                logger.error(f"Exceeded maximum retries ({max_retries}) - unable to process the image.")
+                raise  # Reraise the last exception after exceeding max retries
 
 def save_image_as_jpg(image_bytes, image_num):
     image = Image.open(BytesIO(image_bytes))
@@ -104,8 +133,8 @@ def save_image_as_jpg(image_bytes, image_num):
 
 # save results into a dictionary by week
 def process_tio_central_pdf(path_2_weekly_pdf):
-    load_dotenv()
-    genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+    
+    print(f"Processing {path_2_weekly_pdf}")
     
     # List to store all parsed categories data
     all_product_categories = []
@@ -113,19 +142,15 @@ def process_tio_central_pdf(path_2_weekly_pdf):
     # Main processing flow
     images = extract_images_from_pdf(path_2_weekly_pdf)
 
-    # Extract and process images separately
-    for i, img_bytes in enumerate(images):
-        # Save the image as JPG
-        #image_path = save_image_as_jpg(img_bytes, i + 1)
-        
+    # Extract and process images separately with a progress bar
+    for i, img_bytes in tqdm(enumerate(images), total=len(images), desc="Processing Images"):
         # Apply OCR to the image
         ocr_text = ocr_image(img_bytes)
 
-        if ocr_text:  # Only process if OCR text is NOT empty
-            print(f"Extracted Text from Image {i + 1} (OCR):\n{ocr_text}\n")
-
+        if len(ocr_text) > 100:  # Only process if OCR text is NOT empty
             # Process and store each image's OCR text with Google Gemini
             structured_output = process_and_store_with_google_gemini(img_bytes)
+            sleep(10)
 
             # Add the result of the function call to the list
             all_product_categories.append(structured_output.model_dump())
