@@ -1,0 +1,10 @@
+---
+title: "Lista de Precios CA Tio Central
+---
+
+
+```{ojs}
+const db = DuckDBClient.of({ca_precios: FileAttachment("lista_de_precios_ca_tio_central.parquet")});
+const bins = db.sql`SELECT * FROM ca_precios`
+Inputs.table(bins)
+```
