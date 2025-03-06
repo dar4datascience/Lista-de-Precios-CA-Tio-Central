@@ -1,0 +1,9 @@
+[
+  {
+    "objectID": "lista_de_precios_ca_tio_central.html",
+    "href": "lista_de_precios_ca_tio_central.html",
+    "title": "Lista de Precios CA Tio Central",
+    "section": "",
+    "text": "import {db, duckdb} from '@rlesur/quarto-duckdb'\n\nimport {DuckDBClient} from '@cmudig/duckdb'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ndb_client = DuckDBClient.of({ca_precios: FileAttachment(\"lista_de_precios_ca_tio_central.parquet\")})\n\n\n\n\n\n\n\ndatos_de_precios = db_client.sql`SELECT * FROM ca_precios`\n\nsemanas_disponibles_query = db_client.sql`SELECT DISTINCT week_recorded FROM ca_precios`\n\n// Convert BigInt to Number\nsemanas_disponibles = semanas_disponibles_query.map(row =&gt; Number(row.week_recorded))\n\ncategorias_disponibles_query = db_client.sql`SELECT DISTINCT category_name FROM ca_precios`\n\ncategorias_disponibles = categorias_disponibles_query.map(row =&gt; row.category_name)\n\nviewof semana = Inputs.radio(\n  semanas_disponibles.map(String), // Convert numbers to strings\n  { label: \"Semana\",\n  value: semanas_disponibles.map(String)[0]\n  }\n)\n\nviewof categorias = Inputs.checkbox(\n  categorias_disponibles, \n  { \n    label: \"categorias:\"\n  }\n)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nselected_week_data = db_client.sql`SELECT * FROM ca_precios WHERE week_recorded = ${Number(semana)}`\n\nviewof search = Inputs.search(selected_week_data)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nInputs.table(search)"
+  }
+]

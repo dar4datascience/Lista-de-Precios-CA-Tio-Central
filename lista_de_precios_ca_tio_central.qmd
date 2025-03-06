@@ -2,11 +2,9 @@
 title: "Lista de Precios CA Tio Central"
 author: "Daniel Amieva Rodriguez"
 date: last-modified
-format:
-  html:
-    theme: cyborg
-    message: false
-    warning: false
+format: html
+execute:
+  echo: false
 ---
 
 
@@ -22,9 +20,40 @@ db_client = DuckDBClient.of({ca_precios: FileAttachment("lista_de_precios_ca_tio
 ```
 
 ```{ojs}
-bins = db_client.sql`SELECT * FROM ca_precios`
+datos_de_precios = db_client.sql`SELECT * FROM ca_precios`
+
+semanas_disponibles_query = db_client.sql`SELECT DISTINCT week_recorded FROM ca_precios`
+
+// Convert BigInt to Number
+semanas_disponibles = semanas_disponibles_query.map(row => Number(row.week_recorded))
+
+categorias_disponibles_query = db_client.sql`SELECT DISTINCT category_name FROM ca_precios`
+
+categorias_disponibles = categorias_disponibles_query.map(row => row.category_name)
+
+viewof semana = Inputs.radio(
+  semanas_disponibles.map(String), // Convert numbers to strings
+  { label: "Semana",
+  value: semanas_disponibles.map(String)[0]
+  }
+)
+
+viewof categorias = Inputs.checkbox(
+  categorias_disponibles, 
+  { 
+    label: "categorias:"
+  }
+)
+
 ```
 
 ```{ojs}
-Inputs.table(bins)
+selected_week_data = db_client.sql`SELECT * FROM ca_precios WHERE week_recorded = ${Number(semana)}`
+
+viewof search = Inputs.search(selected_week_data)
+```
+
+```{ojs}
+//| column: screen-inset-shaded
+Inputs.table(search)
 ```

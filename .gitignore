@@ -173,3 +173,4 @@ cython_debug/
 *.jpg
 *.csv
 *.pdf
+/.quarto/

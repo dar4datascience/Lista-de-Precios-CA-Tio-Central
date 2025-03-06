@@ -147,8 +147,7 @@ SELECT * FROM final_cleaned_data
     result.write_parquet(
               "lista_de_precios_ca_tio_central.parquet", 
         compression="SNAPPY",        # Use Snappy compression 
-        append=True,      
-        partition_by=["week_recorded"] # Partition the data by "week_recorded" column
+        append=True
         )
     #print(con.fetchone())
 
