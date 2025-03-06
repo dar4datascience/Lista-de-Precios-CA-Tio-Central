@@ -3,5 +3,6 @@ project:
 
 website:
   title: "Example Website"
+  favicon: favicon-32x32.png
   navbar:
     title: "Example"

@@ -7,6 +7,8 @@ execute:
   echo: false
 ---
 
+![Tio Central Logo](android-chrome-192x192.png)
+
 
 ```{ojs}
 import {db, duckdb} from '@rlesur/quarto-duckdb'
@@ -41,14 +43,28 @@ viewof semana = Inputs.radio(
 viewof categorias = Inputs.checkbox(
   categorias_disponibles, 
   { 
-    label: "categorias:"
+    label: "Categorias:",
+    value: [categorias_disponibles.map(String)[0]]
   }
 )
 
+formattedCategorias = categorias.map(category => `'${category}'`).join(',');
+
+// Interpolating the SQL string with formattedCategorias and semana
+sqlQuery = `
+  SELECT * 
+  FROM ca_precios 
+  WHERE week_recorded = ${Number(semana)}
+  AND category_name IN (${formattedCategorias}) 
+`
+
+//sqlQuery
 ```
 
+
 ```{ojs}
-selected_week_data = db_client.sql`SELECT * FROM ca_precios WHERE week_recorded = ${Number(semana)}`
+// Now passing the interpolated query to the db_client.sql function
+selected_week_data = db_client.query(sqlQuery)
 
 viewof search = Inputs.search(selected_week_data)
 ```

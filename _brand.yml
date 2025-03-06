@@ -4,7 +4,7 @@ meta:
     github: https://github.com/skaltman/brand-yml-blog
 
 logo: 
-  medium: logo.png
+  medium: favicon-32x32.png
 
 color:
   palette:

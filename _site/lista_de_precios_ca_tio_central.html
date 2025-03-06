@@ -66,6 +66,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./favicon-32x32.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -116,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./logo.png" alt="" class="navbar-logo">
+    <img src="./favicon-32x32.png" alt="" class="navbar-logo">
     </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Example</span>
@@ -167,10 +168,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="android-chrome-192x192.png" class="img-fluid figure-img"></p>
+<figcaption>Tio Central Logo</figcaption>
+</figure>
+</div>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="12" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 11;"><span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> {db<span class="op">,</span> duckdb} <span class="im">from</span> <span class="st">'@rlesur/quarto-duckdb'</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> {DuckDBClient} <span class="im">from</span> <span class="st">'@cmudig/duckdb'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="14" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 13;"><span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> {db<span class="op">,</span> duckdb} <span class="im">from</span> <span class="st">'@rlesur/quarto-duckdb'</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> {DuckDBClient} <span class="im">from</span> <span class="st">'@cmudig/duckdb'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-1-1" data-nodetype="declaration">
@@ -187,7 +194,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="18" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 17;"><span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>db_client <span class="op">=</span> DuckDBClient<span class="op">.</span><span class="fu">of</span>({<span class="dt">ca_precios</span><span class="op">:</span> <span class="fu">FileAttachment</span>(<span class="st">"lista_de_precios_ca_tio_central.parquet"</span>)})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="20" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 19;"><span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>db_client <span class="op">=</span> DuckDBClient<span class="op">.</span><span class="fu">of</span>({<span class="dt">ca_precios</span><span class="op">:</span> <span class="fu">FileAttachment</span>(<span class="st">"lista_de_precios_ca_tio_central.parquet"</span>)})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-2" data-nodetype="declaration">
 
@@ -195,30 +202,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb3" data-startfrom="23" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 22;"><span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>datos_de_precios <span class="op">=</span> db_client<span class="op">.</span><span class="fu">sql</span><span class="vs">`SELECT * FROM ca_precios`</span></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>semanas_disponibles_query <span class="op">=</span> db_client<span class="op">.</span><span class="fu">sql</span><span class="vs">`SELECT DISTINCT week_recorded FROM ca_precios`</span></span>
+<div class="sourceCode cell-code hidden" id="cb3" data-startfrom="25" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 24;"><span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>datos_de_precios <span class="op">=</span> db_client<span class="op">.</span><span class="fu">sql</span><span class="vs">`SELECT * FROM ca_precios`</span></span>
 <span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="co">// Convert BigInt to Number</span></span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>semanas_disponibles <span class="op">=</span> semanas_disponibles_query<span class="op">.</span><span class="fu">map</span>(row <span class="kw">=&gt;</span> <span class="bu">Number</span>(row<span class="op">.</span><span class="at">week_recorded</span>))</span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>categorias_disponibles_query <span class="op">=</span> db_client<span class="op">.</span><span class="fu">sql</span><span class="vs">`SELECT DISTINCT category_name FROM ca_precios`</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>semanas_disponibles_query <span class="op">=</span> db_client<span class="op">.</span><span class="fu">sql</span><span class="vs">`SELECT DISTINCT week_recorded FROM ca_precios`</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="co">// Convert BigInt to Number</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>semanas_disponibles <span class="op">=</span> semanas_disponibles_query<span class="op">.</span><span class="fu">map</span>(row <span class="kw">=&gt;</span> <span class="bu">Number</span>(row<span class="op">.</span><span class="at">week_recorded</span>))</span>
 <span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>categorias_disponibles <span class="op">=</span> categorias_disponibles_query<span class="op">.</span><span class="fu">map</span>(row <span class="kw">=&gt;</span> row<span class="op">.</span><span class="at">category_name</span>)</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>categorias_disponibles_query <span class="op">=</span> db_client<span class="op">.</span><span class="fu">sql</span><span class="vs">`SELECT DISTINCT category_name FROM ca_precios`</span></span>
 <span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>viewof semana <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>(</span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>  semanas_disponibles<span class="op">.</span><span class="fu">map</span>(<span class="bu">String</span>)<span class="op">,</span> <span class="co">// Convert numbers to strings</span></span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">label</span><span class="op">:</span> <span class="st">"Semana"</span><span class="op">,</span></span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> semanas_disponibles<span class="op">.</span><span class="fu">map</span>(<span class="bu">String</span>)[<span class="dv">0</span>]</span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>viewof categorias <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">checkbox</span>(</span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>  categorias_disponibles<span class="op">,</span> </span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>  { </span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"categorias:"</span></span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>categorias_disponibles <span class="op">=</span> categorias_disponibles_query<span class="op">.</span><span class="fu">map</span>(row <span class="kw">=&gt;</span> row<span class="op">.</span><span class="at">category_name</span>)</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>viewof semana <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>(</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>  semanas_disponibles<span class="op">.</span><span class="fu">map</span>(<span class="bu">String</span>)<span class="op">,</span> <span class="co">// Convert numbers to strings</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>  { <span class="dt">label</span><span class="op">:</span> <span class="st">"Semana"</span><span class="op">,</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>  <span class="dt">value</span><span class="op">:</span> semanas_disponibles<span class="op">.</span><span class="fu">map</span>(<span class="bu">String</span>)[<span class="dv">0</span>]</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>viewof categorias <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">checkbox</span>(</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>  categorias_disponibles<span class="op">,</span> </span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>  { </span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Categorias:"</span><span class="op">,</span></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>    <span class="dt">value</span><span class="op">:</span> [categorias_disponibles<span class="op">.</span><span class="fu">map</span>(<span class="bu">String</span>)[<span class="dv">0</span>]]</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>formattedCategorias <span class="op">=</span> categorias<span class="op">.</span><span class="fu">map</span>(category <span class="kw">=&gt;</span> <span class="vs">`'</span><span class="sc">${</span>category<span class="sc">}</span><span class="vs">'`</span>)<span class="op">.</span><span class="fu">join</span>(<span class="st">','</span>)<span class="op">;</span></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a><span class="co">// Interpolating the SQL string with formattedCategorias and semana</span></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>sqlQuery <span class="op">=</span> <span class="vs">`</span></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a><span class="vs">  SELECT * </span></span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a><span class="vs">  FROM ca_precios </span></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a><span class="vs">  WHERE week_recorded = </span><span class="sc">${</span><span class="bu">Number</span>(semana)<span class="sc">}</span></span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a><span class="vs">  AND category_name IN (</span><span class="sc">${</span>formattedCategorias<span class="sc">}</span><span class="vs">) </span></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-3-1" data-nodetype="declaration">
@@ -268,11 +286,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-3-8" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-3-9" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb4" data-startfrom="51" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 50;"><span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>selected_week_data <span class="op">=</span> db_client<span class="op">.</span><span class="fu">sql</span><span class="vs">`SELECT * FROM ca_precios WHERE week_recorded = </span><span class="sc">${</span><span class="bu">Number</span>(semana)<span class="sc">}</span><span class="vs">`</span></span>
-<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>viewof search <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">search</span>(selected_week_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb4" data-startfrom="67" data-source-offset="-68"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 66;"><span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>selected_week_data <span class="op">=</span> db_client<span class="op">.</span><span class="fu">query</span>(sqlQuery)</span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a>viewof search <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">search</span>(selected_week_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-4-1" data-nodetype="declaration">
@@ -289,7 +321,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell page-columns page-full">
-<div class="sourceCode cell-code hidden" id="cb5" data-startfrom="57" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 56;"><span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>Inputs<span class="op">.</span><span class="fu">table</span>(search)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb5" data-startfrom="73" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 72;"><span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a>Inputs<span class="op">.</span><span class="fu">table</span>(search)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display column-screen-inset-shaded">
 <div id="ojs-cell-5" data-nodetype="expression">
 
@@ -301,7 +333,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </main> <!-- /main -->
 <script type="ojs-module-contents">
-eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImltcG9ydCB7ZGIsIGR1Y2tkYn0gZnJvbSAnQHJsZXN1ci9xdWFydG8tZHVja2RiJ1xuXG5pbXBvcnQge0R1Y2tEQkNsaWVudH0gZnJvbSAnQGNtdWRpZy9kdWNrZGInXG5cbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMiIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImRiX2NsaWVudCA9IER1Y2tEQkNsaWVudC5vZih7Y2FfcHJlY2lvczogRmlsZUF0dGFjaG1lbnQoXCJsaXN0YV9kZV9wcmVjaW9zX2NhX3Rpb19jZW50cmFsLnBhcnF1ZXRcIil9KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0zIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiZGF0b3NfZGVfcHJlY2lvcyA9IGRiX2NsaWVudC5zcWxgU0VMRUNUICogRlJPTSBjYV9wcmVjaW9zYFxuXG5zZW1hbmFzX2Rpc3BvbmlibGVzX3F1ZXJ5ID0gZGJfY2xpZW50LnNxbGBTRUxFQ1QgRElTVElOQ1Qgd2Vla19yZWNvcmRlZCBGUk9NIGNhX3ByZWNpb3NgXG5cbi8vIENvbnZlcnQgQmlnSW50IHRvIE51bWJlclxuc2VtYW5hc19kaXNwb25pYmxlcyA9IHNlbWFuYXNfZGlzcG9uaWJsZXNfcXVlcnkubWFwKHJvdyA9PiBOdW1iZXIocm93LndlZWtfcmVjb3JkZWQpKVxuXG5jYXRlZ29yaWFzX2Rpc3BvbmlibGVzX3F1ZXJ5ID0gZGJfY2xpZW50LnNxbGBTRUxFQ1QgRElTVElOQ1QgY2F0ZWdvcnlfbmFtZSBGUk9NIGNhX3ByZWNpb3NgXG5cbmNhdGVnb3JpYXNfZGlzcG9uaWJsZXMgPSBjYXRlZ29yaWFzX2Rpc3BvbmlibGVzX3F1ZXJ5Lm1hcChyb3cgPT4gcm93LmNhdGVnb3J5X25hbWUpXG5cbnZpZXdvZiBzZW1hbmEgPSBJbnB1dHMucmFkaW8oXG4gIHNlbWFuYXNfZGlzcG9uaWJsZXMubWFwKFN0cmluZyksIC8vIENvbnZlcnQgbnVtYmVycyB0byBzdHJpbmdzXG4gIHsgbGFiZWw6IFwiU2VtYW5hXCIsXG4gIHZhbHVlOiBzZW1hbmFzX2Rpc3BvbmlibGVzLm1hcChTdHJpbmcpWzBdXG4gIH1cbilcblxudmlld29mIGNhdGVnb3JpYXMgPSBJbnB1dHMuY2hlY2tib3goXG4gIGNhdGVnb3JpYXNfZGlzcG9uaWJsZXMsIFxuICB7IFxuICAgIGxhYmVsOiBcImNhdGVnb3JpYXM6XCJcbiAgfVxuKVxuXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTQiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJzZWxlY3RlZF93ZWVrX2RhdGEgPSBkYl9jbGllbnQuc3FsYFNFTEVDVCAqIEZST00gY2FfcHJlY2lvcyBXSEVSRSB3ZWVrX3JlY29yZGVkID0gJHtOdW1iZXIoc2VtYW5hKX1gXG5cbnZpZXdvZiBzZWFyY2ggPSBJbnB1dHMuc2VhcmNoKHNlbGVjdGVkX3dlZWtfZGF0YSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IklucHV0cy50YWJsZShzZWFyY2gpXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ3NlbWFuYScpIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdjYXRlZ29yaWFzJykifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ3NlYXJjaCcpIn1dfQ==
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImltcG9ydCB7ZGIsIGR1Y2tkYn0gZnJvbSAnQHJsZXN1ci9xdWFydG8tZHVja2RiJ1xuXG5pbXBvcnQge0R1Y2tEQkNsaWVudH0gZnJvbSAnQGNtdWRpZy9kdWNrZGInXG5cbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMiIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImRiX2NsaWVudCA9IER1Y2tEQkNsaWVudC5vZih7Y2FfcHJlY2lvczogRmlsZUF0dGFjaG1lbnQoXCJsaXN0YV9kZV9wcmVjaW9zX2NhX3Rpb19jZW50cmFsLnBhcnF1ZXRcIil9KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0zIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiZGF0b3NfZGVfcHJlY2lvcyA9IGRiX2NsaWVudC5zcWxgU0VMRUNUICogRlJPTSBjYV9wcmVjaW9zYFxuXG5zZW1hbmFzX2Rpc3BvbmlibGVzX3F1ZXJ5ID0gZGJfY2xpZW50LnNxbGBTRUxFQ1QgRElTVElOQ1Qgd2Vla19yZWNvcmRlZCBGUk9NIGNhX3ByZWNpb3NgXG5cbi8vIENvbnZlcnQgQmlnSW50IHRvIE51bWJlclxuc2VtYW5hc19kaXNwb25pYmxlcyA9IHNlbWFuYXNfZGlzcG9uaWJsZXNfcXVlcnkubWFwKHJvdyA9PiBOdW1iZXIocm93LndlZWtfcmVjb3JkZWQpKVxuXG5jYXRlZ29yaWFzX2Rpc3BvbmlibGVzX3F1ZXJ5ID0gZGJfY2xpZW50LnNxbGBTRUxFQ1QgRElTVElOQ1QgY2F0ZWdvcnlfbmFtZSBGUk9NIGNhX3ByZWNpb3NgXG5cbmNhdGVnb3JpYXNfZGlzcG9uaWJsZXMgPSBjYXRlZ29yaWFzX2Rpc3BvbmlibGVzX3F1ZXJ5Lm1hcChyb3cgPT4gcm93LmNhdGVnb3J5X25hbWUpXG5cbnZpZXdvZiBzZW1hbmEgPSBJbnB1dHMucmFkaW8oXG4gIHNlbWFuYXNfZGlzcG9uaWJsZXMubWFwKFN0cmluZyksIC8vIENvbnZlcnQgbnVtYmVycyB0byBzdHJpbmdzXG4gIHsgbGFiZWw6IFwiU2VtYW5hXCIsXG4gIHZhbHVlOiBzZW1hbmFzX2Rpc3BvbmlibGVzLm1hcChTdHJpbmcpWzBdXG4gIH1cbilcblxudmlld29mIGNhdGVnb3JpYXMgPSBJbnB1dHMuY2hlY2tib3goXG4gIGNhdGVnb3JpYXNfZGlzcG9uaWJsZXMsIFxuICB7IFxuICAgIGxhYmVsOiBcIkNhdGVnb3JpYXM6XCIsXG4gICAgdmFsdWU6IFtjYXRlZ29yaWFzX2Rpc3BvbmlibGVzLm1hcChTdHJpbmcpWzBdXVxuICB9XG4pXG5cbmZvcm1hdHRlZENhdGVnb3JpYXMgPSBjYXRlZ29yaWFzLm1hcChjYXRlZ29yeSA9PiBgJyR7Y2F0ZWdvcnl9J2ApLmpvaW4oJywnKTtcblxuLy8gSW50ZXJwb2xhdGluZyB0aGUgU1FMIHN0cmluZyB3aXRoIGZvcm1hdHRlZENhdGVnb3JpYXMgYW5kIHNlbWFuYVxuc3FsUXVlcnkgPSBgXG4gIFNFTEVDVCAqIFxuICBGUk9NIGNhX3ByZWNpb3MgXG4gIFdIRVJFIHdlZWtfcmVjb3JkZWQgPSAke051bWJlcihzZW1hbmEpfVxuICBBTkQgY2F0ZWdvcnlfbmFtZSBJTiAoJHtmb3JtYXR0ZWRDYXRlZ29yaWFzfSkgXG5gXG5cbi8vc3FsUXVlcnlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNCIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Ii8vIE5vdyBwYXNzaW5nIHRoZSBpbnRlcnBvbGF0ZWQgcXVlcnkgdG8gdGhlIGRiX2NsaWVudC5zcWwgZnVuY3Rpb25cbnNlbGVjdGVkX3dlZWtfZGF0YSA9IGRiX2NsaWVudC5xdWVyeShzcWxRdWVyeSlcblxudmlld29mIHNlYXJjaCA9IElucHV0cy5zZWFyY2goc2VsZWN0ZWRfd2Vla19kYXRhKVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC01IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiSW5wdXRzLnRhYmxlKHNlYXJjaClcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgnc2VtYW5hJykifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ2NhdGVnb3JpYXMnKSJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgnc2VhcmNoJykifV19
 </script>
 <script type="module">
 if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
