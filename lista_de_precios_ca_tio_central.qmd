@@ -1,10 +1,30 @@
 ---
-title: "Lista de Precios CA Tio Central
+title: "Lista de Precios CA Tio Central"
+author: "Daniel Amieva Rodriguez"
+date: last-modified
+format:
+  html:
+    theme: cyborg
+    message: false
+    warning: false
 ---
 
 
 ```{ojs}
-const db = DuckDBClient.of({ca_precios: FileAttachment("lista_de_precios_ca_tio_central.parquet")});
-const bins = db.sql`SELECT * FROM ca_precios`
+import {db, duckdb} from '@rlesur/quarto-duckdb'
+
+import {DuckDBClient} from '@cmudig/duckdb'
+
+```
+
+```{ojs}
+db_client = DuckDBClient.of({ca_precios: FileAttachment("lista_de_precios_ca_tio_central.parquet")})
+```
+
+```{ojs}
+bins = db_client.sql`SELECT * FROM ca_precios`
+```
+
+```{ojs}
 Inputs.table(bins)
 ```
