@@ -1,0 +1,74 @@
+---
+title: "Propuesta de Colaboración"
+author: "Tu Nombre"
+format:
+  html:
+    toc: true
+  revealjs:
+    output-file: presentacion-revealjs.html
+    theme: moon
+    incremental: true
+    transition: fade
+    slide-number: true
+    toc: true
+execute:
+  echo: false
+---
+
+# ¿Quién Soy?
+
+- Soy economista especializado en análisis de datos y automatización.
+- Tengo experiencia en la nube y en LLMs (como ChatGPT).
+- Soy consumidor en la Central de Abastos.
+
+---
+
+# Diagrama de Colaboración
+
+[![](https://mermaid.ink/img/pako:eNpdkEtugzAQhq8y8qKr5AJEqgS4YdlIzarAYrCnwSr2IGOkpiGH6Rl6hFyshiSLdBbz8vfb4zkJxZpEIg4e-xb2clM5iJaWGQ4EmkBi4GFOdp6U4aGG9fp5-t-dICvTzqIih9aQCwx59B47842a69u12SLO2dGXufy6CfIyHQNbDBFTc-tO5gtZkCN_PVgek9sJZBnDI7bHpkOQxl1-rFE4wUv56jrj5umHtmH0-lGwG5suguo6xLYsRusZNTxBwRK1PtYbsRKWvEWj43ZOs7gSoSVLlUhiqtF_VqJy58hh_MLb0SmRBD_SSngeD61IPrAbYjX2GgNJg3HF9o706N6Z7Q06_wGJ74WA?type=png)](https://mermaid.live/edit#pako:eNpdkEtugzAQhq8y8qKr5AJEqgS4YdlIzarAYrCnwSr2IGOkpiGH6Rl6hFyshiSLdBbz8vfb4zkJxZpEIg4e-xb2clM5iJaWGQ4EmkBi4GFOdp6U4aGG9fp5-t-dICvTzqIih9aQCwx59B47842a69u12SLO2dGXufy6CfIyHQNbDBFTc-tO5gtZkCN_PVgek9sJZBnDI7bHpkOQxl1-rFE4wUv56jrj5umHtmH0-lGwG5suguo6xLYsRusZNTxBwRK1PtYbsRKWvEWj43ZOs7gSoSVLlUhiqtF_VqJy58hh_MLb0SmRBD_SSngeD61IPrAbYjX2GgNJg3HF9o706N6Z7Q06_wGJ74WA)
+
+---
+
+# ¿Cómo Automatizar?
+
+- Desde mi parte, al poder conectarme a esa base de datos:
+  - Podemos trabajar en automatizar la generación del PDF.
+  - Crear la tabla dinámica online.
+  - Subir la información a Gumroad y la página de GoDaddy.
+
+---
+
+# Propuesta de Trabajo
+
+- Establecer acceso compartido a los datos.
+- Generación de datos históricos.
+- Implementación de automatizaciones.
+- Revisión de productos finales.
+- Subida de productos a sitios web.
+
+---
+
+# Prueba de Concepto
+
+
+```{ojs}
+import {db, duckdb} from '@rlesur/quarto-duckdb'
+
+import {DuckDBClient} from '@cmudig/duckdb'
+
+```
+
+```{ojs}
+db_client = DuckDBClient.of({ca_precios: FileAttachment("lista_de_precios_ca_tio_central.parquet")})
+```
+
+```{ojs}
+datos_de_precios = db_client.sql`SELECT * FROM ca_precios WHERE week_recorded=202508`
+
+```
+
+
+```{ojs}
+//| column: screen-inset-shaded
+Inputs.table(datos_de_precios)
+```
