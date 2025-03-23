@@ -1,6 +1,6 @@
 ---
 title: "Propuesta de Colaboración"
-author: "Tu Nombre"
+author: "Daniel Amieva Rodriguez"
 format:
   html:
     toc: true
